@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const FeaturesHome = () => {
   return (
-    <div className="mt-[100px] px-[5%]">
+    <div id="about" className="mt-[100px] px-[5%]">
       <h1 className="section-header">
         All-in-One Crew Management <br /> Built for Efficiency
       </h1>

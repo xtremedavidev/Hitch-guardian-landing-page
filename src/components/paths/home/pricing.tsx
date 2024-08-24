@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 export const Pricing = () => {
   return (
-    <div className="px-[5%]">
+    <div id="pricing" className="px-[5%]">
       <h1 className="section-header">Flexible Pricing to Fit Your Needs</h1>
       <div className="mt-[60px] flex flex-col items-center justify-center gap-[30px] lg:flex-row">
         {pricingPlans.map((plan) => (

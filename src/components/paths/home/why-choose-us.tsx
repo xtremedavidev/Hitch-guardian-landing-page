@@ -4,7 +4,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 export const WhyChooseUs = () => {
   return (
-    <div className="px-[5%]">
+    <div id="features" className="px-[5%]">
       <hr className="my-[60px] h-[1.09px] w-full bg-[#959595]/[0.3] opacity-[0.3]" />
 
       <div className="flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">
