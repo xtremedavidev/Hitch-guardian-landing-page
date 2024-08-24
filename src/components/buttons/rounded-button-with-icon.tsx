@@ -18,7 +18,7 @@ export const RoundedBtnWithRightIcon: FC<RoundedBtnWithIconProps> = ({
     <button
       {...props}
       className={cn(
-        `flex items-center justify-center gap-1 rounded-full bg-[#22262F] px-[16.5px] py-[11.5px] font-medium text-[#D2D4D7]`,
+        `flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full bg-[#22262F] px-[16.5px] py-[11.5px] font-medium text-[#D2D4D7]`,
         className,
       )}
     >

@@ -20,11 +20,11 @@ export const HeroHome = () => {
         draggable={false}
       />
       <div className="w-full space-y-10 pr-[5%] lg:max-w-[50%] lg:space-y-[70px] lg:pr-0">
-        <h1 className="text-center text-2xl font-bold lg:text-left lg:text-[40px]">
+        <h1 className="text-center text-2xl font-bold lg:text-left lg:text-[40px] lg:leading-tight">
           Empower Your Workforce <br /> with Seamless Crew <br /> Management
         </h1>
 
-        <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-[90px]">
+        <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-10 xl:gap-[80px]">
           <RoundedBtnWithRightIcon
             btnText="Start Your Free Trial"
             iconColor="#15181E"

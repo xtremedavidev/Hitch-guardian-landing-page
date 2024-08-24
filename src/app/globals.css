@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.section-header {
+  @apply text-center text-2xl font-semibold tracking-wider lg:text-[40px] lg:leading-tight;
+}
