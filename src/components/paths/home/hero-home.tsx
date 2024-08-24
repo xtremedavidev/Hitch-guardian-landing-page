@@ -24,7 +24,7 @@ export const HeroHome = () => {
           Empower Your Workforce <br /> with Seamless Crew <br /> Management
         </h1>
 
-        <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-10 xl:gap-[80px]">
+        <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-10">
           <RoundedBtnWithRightIcon
             btnText="Start Your Free Trial"
             iconColor="#15181E"

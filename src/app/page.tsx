@@ -5,6 +5,7 @@ import {
   MeetTheTeam,
   PainSolution,
   Pricing,
+  RequestDemo,
   StreamlineSteps,
   WhyChooseUs,
 } from "@/components";
@@ -20,6 +21,7 @@ export default function Home() {
       <Pricing />
       <MeetTheTeam />
       <FAQ />
+      <RequestDemo />
     </main>
   );
 }
