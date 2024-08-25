@@ -16,11 +16,16 @@ export const FAQItem: FC<FAQItemProps> = ({ title, desc }) => {
         onClick={() => setShow((prev) => !prev)}
         className="flex items-center gap-[25px]"
       >
-        <div className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[10px] bg-[#297FB8]">
+        <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-[#297FB8] 2xl:h-[42px] 2xl:w-[42px]">
           <FaChevronDown
             size={22}
             color="#ffffff"
-            className={`${show ? "-rotate-180" : ""} flex shrink-0 transition-all duration-200`}
+            className={`${show ? "-rotate-180" : ""} hidden shrink-0 transition-all duration-200 2xl:flex`}
+          />
+          <FaChevronDown
+            size={18}
+            color="#ffffff"
+            className={`${show ? "-rotate-180" : ""} flex shrink-0 transition-all duration-200 2xl:hidden`}
           />
         </div>
         <p className="text-base font-medium lg:text-lg 2xl:text-xl">{title}</p>

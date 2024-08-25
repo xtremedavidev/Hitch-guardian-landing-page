@@ -64,7 +64,7 @@ interface FeaturesCardDesktopProps {
 const FeaturesCardDesktop: FC<FeaturesCardDesktopProps> = ({ feature }) => {
   return (
     <div className="rounded-[22px] bg-gradient-to-tr from-white to-white/0 p-[1.18px]">
-      <div className="relative flex h-full w-full justify-between space-y-7 overflow-hidden rounded-[22px] bg-[#010003] px-[53px] py-[44px]">
+      <div className="relative flex h-full w-full justify-between space-y-7 overflow-hidden rounded-[22px] bg-[#010003] px-8 py-7 2xl:px-[53px] 2xl:py-[44px]">
         <div className="absolute left-0 top-0 z-10 h-full w-full bg-gradient-to-tr from-[#FFFFFF]/[0.38] to-[#FFFFFF] opacity-[0.13]" />
         {feature.map((feature) => (
           <div
@@ -74,11 +74,21 @@ const FeaturesCardDesktop: FC<FeaturesCardDesktopProps> = ({ feature }) => {
             <Image
               src={feature.iconurl}
               alt={feature.label}
+              width={50}
+              height={50}
+              className="h-[50px] w-[50px] 2xl:hidden"
+            />
+            <Image
+              src={feature.iconurl}
+              alt={feature.label}
               width={60}
               height={60}
+              className="hidden 2xl:block"
             />
-            <h2 className="text-[28px] font-bold">{feature.label}</h2>
-            <p className="text-xl font-normal text-white/[0.8]">
+            <h2 className="text-xl font-bold 2xl:text-[28px]">
+              {feature.label}
+            </h2>
+            <p className="text-base font-normal text-white/[0.8] 2xl:text-xl">
               {feature.desc}
             </p>
           </div>

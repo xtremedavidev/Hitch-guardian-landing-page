@@ -4,7 +4,22 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 export const WhyChooseUs = () => {
   return (
-    <div id="features" className="px-[5%]">
+    <div id="features" className="relative px-[5%]">
+      <Image
+        src="/images/radial-blur-right.svg"
+        alt=""
+        width={200}
+        height={136}
+        className="absolute right-0 top-[50%] z-[10] h-auto w-[30%] translate-y-[-50%]"
+        draggable={false}
+      />
+      <Image
+        src="/images/final-hero-bg.svg"
+        alt=""
+        fill
+        className="absolute z-[-1] h-auto w-full object-cover object-center"
+        draggable={false}
+      />
       <hr className="my-[60px] h-[1.09px] w-full bg-[#959595]/[0.3] opacity-[0.3]" />
 
       <div className="flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">

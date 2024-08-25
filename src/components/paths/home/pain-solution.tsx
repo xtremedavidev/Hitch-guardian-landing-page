@@ -1,6 +1,16 @@
+import Image from "next/image";
+
 export const PainSolution = () => {
   return (
-    <div className="mt-[70px] px-[5%] text-white">
+    <div className="relative mt-[70px] px-[5%] text-white">
+      <Image
+        src="/images/radial-blur-right.svg"
+        alt=""
+        width={200}
+        height={136}
+        className="absolute right-0 top-[50%] z-[10] h-auto w-[30%] translate-y-[-50%]"
+        draggable={false}
+      />
       <h1 className="section-header">
         Tired of Inefficiency and Rising Costs? <br /> We’ve Got You Covered.
       </h1>
@@ -19,10 +29,10 @@ export const PainSolution = () => {
           <div className="mt-[30px] space-y-6 2xl:mt-[55px] 2xl:space-y-8">
             {painPointNSolutionArr.map((point) => (
               <div key={point.painPoint} className="flex justify-between">
-                <p className="w-full text-lg font-medium lg:max-w-[50%] 2xl:text-2xl">
+                <p className="w-full text-base font-medium lg:max-w-[50%] 2xl:text-2xl">
                   {point.painPoint}
                 </p>
-                <p className="w-full text-base font-normal text-[#99D6FF] lg:max-w-[50%] 2xl:text-xl">
+                <p className="w-full text-sm font-normal text-[#99D6FF] lg:max-w-[50%] 2xl:text-xl">
                   {point.solution}
                 </p>
               </div>
@@ -39,7 +49,7 @@ export const PainSolution = () => {
               {painPointNSolutionArr.map((point) => (
                 <p
                   key={point.painPoint}
-                  className="w-full text-lg font-medium lg:max-w-[50%] 2xl:text-2xl"
+                  className="w-full text-base font-medium lg:max-w-[50%] 2xl:text-2xl"
                 >
                   {point.painPoint}
                 </p>
@@ -55,7 +65,7 @@ export const PainSolution = () => {
               {painPointNSolutionArr.map((point) => (
                 <p
                   key={point.solution}
-                  className="w-full text-base font-normal text-[#99D6FF] lg:max-w-[50%] 2xl:text-xl"
+                  className="w-full text-sm font-normal text-[#99D6FF] lg:max-w-[50%] 2xl:text-xl"
                 >
                   {point.solution}
                 </p>

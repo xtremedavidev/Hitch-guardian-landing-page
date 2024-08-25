@@ -5,10 +5,10 @@ export const HeroHome = () => {
   return (
     <div className="relative flex h-[100dvh] w-full flex-col items-center gap-8 pl-[5%] pt-[150px] lg:flex-row lg:justify-between lg:gap-0">
       <Image
-        src="/images/hero-bg-effect.png"
+        src="/images/final-hero-bg.svg"
         alt=""
         fill
-        className="absolute z-[-1] h-auto w-full"
+        className="absolute z-[-1] h-auto w-full object-cover object-center"
         draggable={false}
       />
       <Image
@@ -30,7 +30,7 @@ export const HeroHome = () => {
             iconColor="#15181E"
             className="w-full bg-[#FFFFFF] text-sm text-[#15181E] lg:w-fit"
             style={{
-              boxShadow: "2.5px 2.5px 11.26px 0 rgba(170, 63, 255, 0.8)",
+              boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
             }}
           />
           <RoundedBtnWithRightIcon
@@ -39,7 +39,7 @@ export const HeroHome = () => {
           />
         </div>
       </div>
-      <div className="w-full lg:max-w-[45%]">
+      <div className="w-full lg:max-w-[47%]">
         <Image
           src="/images/hero-img.svg"
           alt="hero img"

@@ -30,7 +30,7 @@ export const RequestDemo = () => {
             iconColor="#15181E"
             className="w-full bg-[#FFFFFF] text-sm text-[#15181E] lg:w-fit"
             style={{
-              boxShadow: "2.5px 2.5px 11.26px 0 rgba(170, 63, 255, 0.8)",
+              boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
             }}
           />
           <RoundedBtnWithRightIcon
