@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import { PriceCard } from "@/components/ui";
+import React from "react";
 
 export const Pricing = () => {
   return (
@@ -14,33 +15,6 @@ export const Pricing = () => {
           />
         ))}
       </div>
-    </div>
-  );
-};
-
-interface PriceCardProps {
-  planType: string;
-  title: string;
-  desc: string;
-  onClick?: () => void;
-}
-
-const PriceCard: FC<PriceCardProps> = ({ planType, title, desc, onClick }) => {
-  return (
-    <div className="flex h-[380px] w-full flex-col justify-between rounded-[10px] border-2 border-solid border-[#DFE4EA] p-[30px] lg:max-w-[calc(100%/3)] 2xl:p-[50px]">
-      <div className="space-y-5">
-        <h3 className="text-base font-semibold text-[#7CD0FF] 2xl:text-lg">
-          {planType}Plan
-        </h3>
-        <h2 className="text-lg font-semibold 2xl:text-xl">{title}</h2>
-        <p className="text-base font-medium 2xl:text-lg">{desc}</p>
-      </div>
-
-      <hr className="h-[1.09px] w-full bg-[#959595]/[0.3]" />
-
-      <button className="flex h-[50px] w-full items-center justify-center rounded-md bg-[#FFFFFF] text-base font-medium text-[#297FB8] hover:bg-[#297FB8] hover:text-white">
-        Choose {planType}
-      </button>
     </div>
   );
 };

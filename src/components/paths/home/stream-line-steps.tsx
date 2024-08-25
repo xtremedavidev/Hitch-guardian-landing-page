@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { FC } from "react";
+import { StreamlineCard } from "@/components/ui";
+import { fadeInAnimationVariantsHorizontal } from "../../../lib/variants/fm-variants";
 
 export const StreamlineSteps = () => {
   return (
@@ -9,32 +9,16 @@ export const StreamlineSteps = () => {
       </h1>
 
       <div className="mt-10 flex flex-col items-center gap-6 lg:flex-row 2xl:mt-[60px]">
-        {cardsArr.map((item) => (
+        {cardsArr.map((item, index) => (
           <StreamlineCard
             key={item.label}
             iconurl={item.iconurl}
             label={item.label}
             desc={item.description}
+            index={index}
           />
         ))}
       </div>
-    </div>
-  );
-};
-
-interface StreamlineCardProps {
-  iconurl: string;
-  label: string;
-  desc: string;
-}
-
-const StreamlineCard: FC<StreamlineCardProps> = ({ iconurl, label, desc }) => {
-  return (
-    <div className="min-h-[218px] space-y-4 rounded-xl bg-white/5 p-[30px]">
-      <Image src={iconurl} alt="step1" width={24} height={24} />
-
-      <h2 className="text-lg font-medium 2xl:text-xl">{label}</h2>
-      <p className="text-base font-medium text-white/60 2xl:text-lg">{desc}</p>
     </div>
   );
 };

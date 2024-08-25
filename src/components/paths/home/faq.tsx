@@ -5,8 +5,13 @@ export const FAQ = () => {
     <div className="mt-[100px] px-[5%]">
       <h1 className="section-header">Frequently Asked Questions</h1>
       <div className="mt-[60px] space-y-[35px]">
-        {FAQArr.map((faq) => (
-          <FAQItem key={faq.title} title={faq.title} desc={faq.desc} />
+        {FAQArr.map((faq, index) => (
+          <FAQItem
+            key={faq.title}
+            title={faq.title}
+            desc={faq.desc}
+            index={index}
+          />
         ))}
       </div>
     </div>

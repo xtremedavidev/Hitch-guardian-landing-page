@@ -2,16 +2,26 @@
 
 import { FC, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { fadeInAnimationVariantsVertical } from "@/lib";
 
 interface FAQItemProps {
   title: string;
   desc: string;
+  index: number;
 }
 
-export const FAQItem: FC<FAQItemProps> = ({ title, desc }) => {
+export const FAQItem: FC<FAQItemProps> = ({ title, desc, index }) => {
   const [show, setShow] = useState(false);
   return (
-    <div className="rounded-[10px] border border-solid border-[#F3F4FE] p-4 lg:p-6 2xl:p-8">
+    <motion.div
+      variants={fadeInAnimationVariantsVertical}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true }}
+      custom={index}
+      className="rounded-[10px] border border-solid border-[#F3F4FE] p-4 lg:p-6 2xl:p-8"
+    >
       <div
         onClick={() => setShow((prev) => !prev)}
         className="flex items-center gap-[25px]"
@@ -38,6 +48,6 @@ export const FAQItem: FC<FAQItemProps> = ({ title, desc }) => {
           <p className="text-xs font-normal lg:text-sm 2xl:text-base">{desc}</p>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };

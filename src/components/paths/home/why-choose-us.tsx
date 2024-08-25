@@ -1,3 +1,4 @@
+import { ScrollRevealLeft, ScrollRevealRight } from "@/components/animations";
 import Image from "next/image";
 import { FC } from "react";
 import { GoCheckCircleFill } from "react-icons/go";
@@ -22,28 +23,32 @@ export const WhyChooseUs = () => {
       />
       <hr className="my-[60px] h-[1.09px] w-full bg-[#959595]/[0.3] opacity-[0.3]" />
 
-      <div className="flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">
+      <div className="flex flex-col items-center justify-between gap-10 overflow-x-hidden lg:flex-row lg:gap-0">
         <div className="w-full lg:max-w-[50%]">
-          <h1 className="text-4xl font-bold">Why Choose Hitch Guardian?</h1>
+          <ScrollRevealLeft>
+            <h1 className="text-4xl font-bold">Why Choose Hitch Guardian?</h1>
 
-          <div className="mt-10 space-y-5">
-            {whyChooseArr.map((item) => (
-              <WhyChooseItem
-                key={item.label}
-                label={item.label}
-                desc={item.description}
-              />
-            ))}
-          </div>
+            <div className="mt-10 space-y-5">
+              {whyChooseArr.map((item) => (
+                <WhyChooseItem
+                  key={item.label}
+                  label={item.label}
+                  desc={item.description}
+                />
+              ))}
+            </div>
+          </ScrollRevealLeft>
         </div>
         <div className="w-full lg:max-w-[40%]">
-          <Image
-            src="/images/why-choose-us-img.svg"
-            alt="why-choose-us"
-            width={100}
-            height={100}
-            className="h-auto w-full"
-          />
+          <ScrollRevealRight>
+            <Image
+              src="/images/why-choose-us-img.svg"
+              alt="why-choose-us"
+              width={100}
+              height={100}
+              className="h-auto w-full"
+            />
+          </ScrollRevealRight>
         </div>
       </div>
 

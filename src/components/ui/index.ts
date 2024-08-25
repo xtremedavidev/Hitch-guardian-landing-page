@@ -1,2 +1,5 @@
 export * from "./faq-item"
 export * from "./team-profile-card"
+export * from "./stream-line-card"
+export * from "./feature-card"
+export * from "./price-card"
