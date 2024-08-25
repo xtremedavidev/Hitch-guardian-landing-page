@@ -71,7 +71,7 @@ const QuickLinkItem: FC<QuickLinkItemProps> = ({ to, label }) => {
 const leftLinks = [
   { label: "About", link: "/#about" },
   { label: "Features", link: "/#features" },
-  { label: "Blog", link: "/" },
+  // { label: "Blog", link: "/" },
   { label: "Pricing", link: "/#pricing" },
 ];
 
