@@ -1,3 +1,4 @@
+import { TeamProfileCard } from "@/components/ui";
 import Image from "next/image";
 import { FC } from "react";
 
@@ -15,25 +16,13 @@ export const MeetTheTeam = () => {
 
       <div className="mt-[60px] flex flex-col items-center justify-center gap-[40px] lg:flex-row">
         {teamArr.map((team) => (
-          <TeamProfileCard key={team.name} name={team.name} role={team.role} />
+          <TeamProfileCard
+            key={team.name}
+            name={team.name}
+            role={team.role}
+            desc={team.desc}
+          />
         ))}
-      </div>
-    </div>
-  );
-};
-
-interface TeamProfileCardProps {
-  name: string;
-  role: string;
-}
-
-const TeamProfileCard: FC<TeamProfileCardProps> = ({ name, role }) => {
-  return (
-    <div className="flex flex-col gap-14">
-      <div className="flex h-[250px] w-[250px] shrink-0 rounded-full bg-white 2xl:h-[300px] 2xl:w-[300px]" />
-      <div className="space-y-4 text-center">
-        <p className="text-2xl font-medium">{name}</p>
-        <p className="text-xl font-medium">{role}</p>
       </div>
     </div>
   );
@@ -43,13 +32,16 @@ const teamArr = [
   {
     name: "Ricardo Esteban",
     role: "CEO",
+    desc: "18 years in the Canadian oil and gas industry, with 15 years in well and production testing, executing high-profile projects and creating an extensive network within the energy sector. Always looking to improve and optimize processes and systems in order to deliver costumers the highest performance and results rates.",
   },
   {
-    name: "Adebule Segun",
+    name: "Segun Adebule",
     role: "CPO",
+    desc: "Segun brings 10 years of global IT experience and over 7 years in product management, specialized in customer-centric product growth, with expertise in tech and energy sectors. He was also part of Apple’s innovation cohort. Segun has a Bachelor degree in finance with a Master's in Risk Management",
   },
   {
     name: "Oleksandr Shubin",
     role: "CIO",
+    desc: "Over 12 years of experience in oil and gas operations across Europe, the Middle East, and Canada, Oleksandr brings a wealth of knowledge and network from all around the world. He holds a Masters degree in mechanical engineer. Dedicated to build a great reputation based on punctuality, extensive knowledge and flawless project execution.",
   },
 ];

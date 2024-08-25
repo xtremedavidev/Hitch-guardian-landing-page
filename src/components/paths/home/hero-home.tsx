@@ -20,9 +20,14 @@ export const HeroHome = () => {
         draggable={false}
       />
       <div className="w-full space-y-10 pr-[5%] lg:max-w-[50%] lg:space-y-[70px] lg:pr-0">
-        <h1 className="text-center text-2xl font-bold lg:text-left lg:text-[40px] lg:leading-tight">
-          Empower Your Workforce <br /> with Seamless Crew <br /> Management
-        </h1>
+        <div>
+          <h2 className="text-center text-2xl font-bold text-[#297FB8] lg:text-left lg:text-[32px] lg:leading-tight">
+            Hitch Guardian
+          </h2>
+          <h1 className="mt-5 text-center text-2xl font-bold lg:text-left lg:text-[40px] lg:leading-tight">
+            Empower Your Workforce <br /> with Seamless Crew <br /> Management
+          </h1>
+        </div>
 
         <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-10">
           <RoundedBtnWithRightIcon
