@@ -1,4 +1,5 @@
 import { RoundedBtnWithRightIcon } from "@/components/buttons";
+import { ReqDemoBtn, StartFreeTrailBtn } from "@/components/ui";
 
 export const RequestDemo = () => {
   return (
@@ -25,18 +26,21 @@ export const RequestDemo = () => {
           </p>
         </div>
         <div className="flex w-full flex-col items-center gap-6 lg:max-w-[50%] lg:flex-row lg:gap-10">
-          <RoundedBtnWithRightIcon
+          {/* <RoundedBtnWithRightIcon
             btnText="Start Your Free Trial"
             iconColor="#15181E"
             className="w-full bg-[#FFFFFF] text-sm text-[#15181E] lg:w-fit"
             style={{
               boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
             }}
-          />
-          <RoundedBtnWithRightIcon
+          /> */}
+          <StartFreeTrailBtn />
+
+          {/* <RoundedBtnWithRightIcon
             btnText="Request a personalized demo"
             className="w-full border border-solid border-white bg-transparent text-white/[0.98] lg:w-fit"
-          />
+          /> */}
+          <ReqDemoBtn />
         </div>
       </div>
     </div>

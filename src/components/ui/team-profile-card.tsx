@@ -1,20 +1,31 @@
 import { FC } from "react";
 import { cn } from "@/utils";
+import Image from "next/image";
 
 interface TeamProfileCardProps {
   name: string;
   role: string;
   desc: string;
+  imageUrl: string;
 }
 
 export const TeamProfileCard: FC<TeamProfileCardProps> = ({
   name,
   role,
   desc,
+  imageUrl,
 }) => {
   return (
     <div className="group/teamcard relative flex flex-col gap-14">
-      <div className="flex h-[250px] w-[250px] shrink-0 rounded-full bg-white 2xl:h-[300px] 2xl:w-[300px]" />
+      <div className="flex h-[250px] w-[250px] shrink-0 rounded-full bg-white 2xl:h-[300px] 2xl:w-[300px]">
+        <Image
+          src={imageUrl}
+          width={300}
+          height={300}
+          alt="team member"
+          className="h-full w-full rounded-full object-cover object-top"
+        />
+      </div>
       <div className="space-y-4 text-center">
         <p className="text-2xl font-medium">{name}</p>
         <p className="text-xl font-medium">{role}</p>
