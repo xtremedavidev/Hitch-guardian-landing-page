@@ -32,7 +32,7 @@ const teamArr = [
   {
     name: "Ricardo Esteban",
     role: "CEO",
-    desc: "18 years in the Canadian oil and gas industry, with 15 years in well and production testing, executing high-profile projects and creating an extensive network within the energy sector. Always looking to improve and optimize processes and systems in order to deliver costumers the highest performance and results rates.",
+    desc: "18 years in the Canadian oil and gas industry, with 15 years in well and production testing, executing high-profile projects and creating an extensive network within the energy sector. Always looking to improve and optimize processes and systems in order to deliver costumers the highest performance and result rates.",
     image: "/images/Ricardo.jpeg",
   },
   {
