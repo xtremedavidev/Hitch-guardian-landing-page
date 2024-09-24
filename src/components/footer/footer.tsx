@@ -10,10 +10,10 @@ export const Footer = () => {
           <h1 className="text-xl font-bold">Contact Us</h1>
           <p>tel: +1 587.343.6183</p>
           <Link
-            href="mailto:redsteban@hotmail.com"
+            href="mailto:gethitched@hitchguardian.me"
             className="text-base font-normal underline underline-offset-2"
           >
-            redsteban@hotmail.com
+            gethitched@hitchguardian.me
           </Link>
         </div>
 
