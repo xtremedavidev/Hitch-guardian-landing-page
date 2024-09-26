@@ -21,7 +21,7 @@ export const HeroHome = () => {
         draggable={false}
       />
       <div className="w-full pr-[5%] lg:max-w-[50%] lg:pr-0">
-        <ScrollRevealLeft className="space-y-10 lg:space-y-[70px]">
+        <ScrollRevealLeft className="relative z-[10] space-y-10 lg:space-y-[70px]">
           <div>
             <h2 className="text-center text-2xl font-bold text-[#297FB8] lg:text-left lg:text-[32px] lg:leading-tight">
               Hitch Guardian
@@ -34,14 +34,16 @@ export const HeroHome = () => {
             <RoundedBtnWithRightIcon
               btnText="Start Your Free Trial"
               iconColor="#15181E"
-              className="w-full bg-[#FFFFFF] text-sm text-[#15181E] lg:w-fit"
+              className="relative z-50 w-full bg-[#FFFFFF] text-sm text-[#15181E] lg:w-fit"
               style={{
                 boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
               }}
+              sendEmail={true}
             />
             <RoundedBtnWithRightIcon
               btnText="Request a personalized demo"
-              className="w-full border border-solid border-white bg-transparent text-white/[0.98] lg:w-fit"
+              className="relative z-50 w-full border border-solid border-white bg-transparent text-white/[0.98] lg:w-fit"
+              sendEmail={true}
             />
           </div>
         </ScrollRevealLeft>
