@@ -17,14 +17,15 @@ export const Navbar = () => {
 
         <div className="hidden items-center gap-[19px] lg:flex">
           <Link
-            href="/"
+            href="#about"
             className="text-[13px] font-medium text-[#E3E5E8]/[0.52]"
           >
-            Resources
+            Features
           </Link>
           <RoundedBtnWithRightIcon
             btnText="Start Now"
             className="py-[6px] text-[13px]"
+            sendEmail={true}
           />
         </div>
       </div>
