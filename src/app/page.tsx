@@ -2,6 +2,7 @@ import {
   FAQ,
   FeaturesHome,
   HeroHome,
+  LaunchDashboardPopup,
   MeetTheTeam,
   PainSolution,
   Pricing,
@@ -13,6 +14,7 @@ import {
 export default function Home() {
   return (
     <main className="h-full">
+      <LaunchDashboardPopup />
       <HeroHome />
       <PainSolution />
       <FeaturesHome />
