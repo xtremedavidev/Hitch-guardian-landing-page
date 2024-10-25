@@ -15,6 +15,16 @@ export const LaunchDashboardPopup = () => {
     }, 10000);
   }, []);
 
+  const SendEmail = () => {
+    // alert("Clicked");
+    const subject = encodeURIComponent("Request for Hitch Guardian Demo");
+    const body = encodeURIComponent(
+      // `Dear Hitch Guardian Team,\n\nI hope this message finds you well. I am writing to express my interest in scheduling a demo of Hitch Guardian. We are excited about the potential it offers and would like to understand how it can meet our specific needs.\n\n\n1. Contact Information:\n\nName:\nJob Title:\nCompany Name:\nEmail Address:\nPhone Number:\n\n\n2. Company Information:\n\nIndustry:\nSize of Fleet (if applicable):\nPrimary Use Case for Hitch Guardian:\n\n\n3. Demo Preferences:\n\nPreferred Date for the Demo:\nPreferred Time (including Time Zone):\nAny Specific Areas of Interest (e.g., Features, Integration, etc.):\n\n\nAny Other Information You Would Like to Share?\n\n\nThank you for your time and consideration. We look forward to demonstrating how Hitch Guardian can help achieve your goals.\n\nBest regards,\n\n[Your Name]\n[Your Job Title]\n[Your Company Name]\n[Your Contact Information]`,
+      `Dear Hitch Guardian Team,\n\nI hope this message finds you well. I am writing to express my interest in scheduling a demo of Hitch Guardian. We are excited about the potential it offers and would like to understand how it can meet our specific needs.\n\n\n1. Contact Information:\n\nName:\nJob Title:\nCompany Name:\nEmail Address:\nPhone Number:\n\n\n2. Company Information:\n\nIndustry:\nSize of Fleet (if applicable):\nPrimary Use Case for Hitch Guardian:\n\n\n3. Demo Preferences:\n\nPreferred Date for the Demo:\nPreferred Time (including Time Zone):\nAny Specific Areas of Interest (e.g., Features, Integration, etc.):\n\n\nAny Other Information You Would Like to Share?\n\n\nThank you for your time and consideration. We look forward to demonstrating how Hitch Guardian can help achieve your goals.\n\nBest regards,\n\nRicardo Esteban\nCEO & Founder\nHitch Guardian\ngethitched@hitchguardian.me\n+1 587 343 6183`,
+    );
+    const mailtoLink = `mailto:gethitched@hitchguardian.me?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+  };
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
@@ -35,7 +45,7 @@ export const LaunchDashboardPopup = () => {
             Yay!!!
           </h1>
           <p className="mt-[6px] text-center text-sm font-normal text-white lg:text-base">
-            We just launched our dashboard for beta!
+          {"We’ve Launch our Beta and it’s ready for a test drive!"}
           </p>
         </div>
 
@@ -47,14 +57,15 @@ export const LaunchDashboardPopup = () => {
             <span className="text-sm font-medium">Try Later</span>{" "}
             <MdKeyboardArrowRight size={17} color="white" />
           </button>
-          <Link
-            href={`https://admin-for-hitch.vercel.app/sign-in`}
-            target="_blank"
+          <div
+            // href={`https://admin-for-hitch.vercel.app/sign-in`}
+            onClick={()=> SendEmail}
+           // target="_blank"
             className="flex w-full items-center justify-center gap-[10px] rounded-full bg-[#297FB8] px-4 py-[11px] text-white"
           >
             <span className="text-sm font-medium">Login Now</span>{" "}
             <MdKeyboardArrowRight size={17} color="white" />
-          </Link>
+          </div>
         </div>
       </div>
     </div>,
