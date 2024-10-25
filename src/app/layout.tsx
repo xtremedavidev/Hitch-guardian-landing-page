@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
+
+const GOOGLE_TAG_MANAGER_ID = "G-5MBQH4P43M"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {(
-          <GoogleTagManager gtmId={'G-5MBQH4P43M'} />
+        {GOOGLE_TAG_MANAGER_ID && (
+          <GoogleTagManager gtmId={GOOGLE_TAG_MANAGER_ID} />
         )}
         <Script
           async
