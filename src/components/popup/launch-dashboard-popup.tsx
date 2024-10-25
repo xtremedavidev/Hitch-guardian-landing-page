@@ -63,7 +63,7 @@ export const LaunchDashboardPopup = () => {
            // target="_blank"
             className="flex w-full items-center justify-center gap-[10px] rounded-full bg-[#297FB8] px-4 py-[11px] text-white"
           >
-            <span className="text-sm font-medium">Login Now</span>{" "}
+            <span className="text-sm font-medium">For more info</span>{" "}
             <MdKeyboardArrowRight size={17} color="white" />
           </div>
         </div>
