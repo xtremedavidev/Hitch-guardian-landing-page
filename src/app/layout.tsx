@@ -25,8 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID && (
-          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
+        {(
+          <GoogleTagManager gtmId={'G-5MBQH4P43M'} />
         )}
         <Script
           async
