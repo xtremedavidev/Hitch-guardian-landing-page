@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script"; // Import Script from next/script
@@ -16,7 +14,6 @@ export const metadata: Metadata = {
     icon: "/images/logo.svg",
   },
 };
-
 
 const GOOGLE_TAG_MANAGER_ID = "G-5MBQH4P43M"
 
