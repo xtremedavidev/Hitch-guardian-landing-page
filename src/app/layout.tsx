@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const GOOGLE_TAG_MANAGER_ID = "G-5MBQH4P43M"
+const GOOGLE_TAG_MANAGER_ID = "AW-16742497543"
 
 export default function RootLayout({
   children,
