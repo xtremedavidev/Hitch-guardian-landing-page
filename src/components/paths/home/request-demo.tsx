@@ -1,7 +1,7 @@
 import { RoundedBtnWithRightIcon } from "@/components/buttons";
 import { ReqDemoBtn, StartFreeTrailBtn } from "@/components/ui";
 
-export const RequestDemo = () => {
+export const RequestDemo = ({ SendEmail }: { SendEmail: () => void }) => {
   return (
     <div className="mb-10 mt-16 bg-[#297FB8]">
       <div
@@ -14,7 +14,7 @@ export const RequestDemo = () => {
         className="flex w-full flex-col items-center justify-between gap-10 px-[5%] py-[40px] lg:flex-row lg:gap-0"
       >
         <div className="w-full space-y-[15px] lg:max-w-[40%]">
-          <p className="text-base font-medium lg:text-xl">
+          <p  className="text-base font-medium lg:text-xl">
             Ready to Optimize Your Crew Management?
           </p>
           <h2 className="text-2xl font-bold leading-tight lg:text-3xl 2xl:text-[40px]">
@@ -34,13 +34,20 @@ export const RequestDemo = () => {
               boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
             }}
           /> */}
-          <StartFreeTrailBtn />
+
+          <div onClick={SendEmail}>
+          <StartFreeTrailBtn SendEmail={SendEmail} />
+
+          </div>
 
           {/* <RoundedBtnWithRightIcon
             btnText="Request a personalized demo"
             className="w-full border border-solid border-white bg-transparent text-white/[0.98] lg:w-fit"
           /> */}
-          <ReqDemoBtn />
+                    <div onClick={SendEmail}>
+
+          <ReqDemoBtn SendEmail={SendEmail} />
+          </div>
         </div>
       </div>
     </div>

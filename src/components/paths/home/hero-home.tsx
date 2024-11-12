@@ -2,7 +2,7 @@ import { ScrollRevealLeft, ScrollRevealRight } from "@/components/animations";
 import { RoundedBtnWithRightIcon } from "@/components/buttons";
 import Image from "next/image";
 
-export const HeroHome = () => {
+export const HeroHome = ({ SendEmail }: { SendEmail: () => void }) => {
   return (
     <div className="relative flex min-h-[100dvh] w-full flex-col items-center gap-8 overflow-hidden pl-[5%] pt-[150px] lg:max-h-[100dvh] lg:flex-row lg:justify-between lg:gap-0">
       <Image
@@ -39,11 +39,14 @@ export const HeroHome = () => {
                 boxShadow: "2.5px 2.5px 11.26px 0 rgba(255, 255, 255, 0.8)",
               }}
               sendEmail={true}
+              SendEmail={SendEmail}
             />
             <RoundedBtnWithRightIcon
               btnText="Request a personalized demo"
               className="relative z-50 w-full border border-solid border-white bg-transparent text-white/[0.98] lg:w-fit"
               sendEmail={true}
+              SendEmail={SendEmail}
+
             />
           </div>
         </ScrollRevealLeft>

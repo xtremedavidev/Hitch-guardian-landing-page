@@ -1,12 +1,34 @@
+"use client"
 import Link from "next/link";
 import { NavScrollWrapper } from "./navWrappers";
 import Image from "next/image";
 import { RoundedBtnWithRightIcon } from "../buttons";
+import Email from "@/components/Email"
+import { useState } from "react";
+
 // import { NavLinksElements } from "@/lib";
 
 export const Navbar = () => {
+  const [emailopen, setEmailOpen] = useState(false)
+
+  const SendEmail = () => {
+
+    setEmailOpen(true)
+    console.log("done")
+  
+  }
+
+
+  
+  const onCloseEmail = () => {
+    setEmailOpen(!emailopen)
+    console.log("trial, " , emailopen)
+  }
+
+
   return (
     <NavScrollWrapper>
+
       <div className="flex h-full w-full items-center justify-between">
         <Image
           alt="hitch guardian logo"
@@ -22,11 +44,12 @@ export const Navbar = () => {
           >
             Features
           </Link>
-          <RoundedBtnWithRightIcon
+          {/* <RoundedBtnWithRightIcon
             btnText="Start Now"
             className="py-[6px] text-[13px]"
             sendEmail={true}
-          />
+            SendEmail={SendEmail}
+          /> */}
         </div>
       </div>
     </NavScrollWrapper>

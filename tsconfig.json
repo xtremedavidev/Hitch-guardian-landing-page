@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/popup/launch-dashboard-popup.jsx", "src/components/paths/home/request-demo.tsx", "src/components/ui/start-free-trial-btn.tsx"],
   "exclude": ["node_modules"]
 }

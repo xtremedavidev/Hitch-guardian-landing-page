@@ -5,3 +5,12 @@
 .section-header {
   @apply text-center text-2xl font-semibold tracking-wider lg:text-[40px] lg:leading-tight;
 }
+
+.scroller {
+  overflow-y: scroll;
+  scrollbar-color: #3b82f6 #111827 ;
+} 
+.no-scroller {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
