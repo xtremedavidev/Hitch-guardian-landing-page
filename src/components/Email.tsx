@@ -145,7 +145,7 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
               {/* Cloudflare Turnstile */}
               <Turnstile
-                sitekey = {process.env.CLOUDFLARE || ""}
+                sitekey = {process.env.REACT_APP_CLOUDFLARE || ""}
                 onSuccess={(token) => setCaptchaToken(token)}
                 theme="dark"
               />

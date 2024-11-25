@@ -21,18 +21,18 @@ export const Pricing = () => {
 
 const pricingPlans = [
   {
-    planType: "Basic Plan",
-    title: "Small businesses or startups",
-    desc: "Perfect for using in a personal website or a client project.",
+    planType: "Gear up (Entry)",
+    title: "Basic crew scheduling and management up to 50 workers",
+    desc: "Get full control of your crew management for a price as low as $958 per month.",
   },
   {
-    planType: "Professional Plan",
+    planType: "Smart ops (Pro)",
     title: "Growing businesses",
-    desc: "Advanced features, including in-depth analytics, expanded routing, and increased user access.",
+    desc: "Gear up functions + 4 KPI Metrics and up to 100 workers",
   },
   {
-    planType: "Enterprise Plan",
+    planType: "Guardian Elite (Enterprise)",
     title: "Large enterprises",
-    desc: "Full feature access, custom integrations, premium support, and dedicated account management.",
+    desc: "Full access + Journey management module, Unlimited workers.",
   },
 ];
