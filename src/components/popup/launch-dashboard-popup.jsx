@@ -9,11 +9,11 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 export const LaunchDashboardPopup = ({SendEmail}) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 10000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsOpen(true);
+  //   }, 10000);
+  // }, []);
 
   
   if (!isOpen) return null;
