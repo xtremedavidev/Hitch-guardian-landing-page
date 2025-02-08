@@ -44,11 +44,10 @@ export const Footer = () => {
 
       <div className="flex items-center justify-center gap-5">
         <span className="text-xl font-normal">All rights reserved</span>
-        <Image
+        <img
+        className="h-5"
           alt="hitch guardian logo"
-          src="/images/logo.svg"
-          width={48}
-          height={48}
+          src="/images/logofull.svg"
         />
       </div>
     </footer>

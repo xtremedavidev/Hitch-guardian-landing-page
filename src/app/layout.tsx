@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script"; // Import Script from next/script
 import "./globals.css";
+import Head from "next/head";
 import { Footer, Navbar } from "@/components";
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: "Hitch Guardian",
   description: "Empower your workflow with seamless crew management",
   icons: {
-    icon: "/images/logo.svg",
+    icon: "/images/logoicon.svg",
   },
 };
 
@@ -50,7 +51,6 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-
       <body className={`${inter.className} bg-[#010003] text-white`}>
         <Navbar />
         {children}

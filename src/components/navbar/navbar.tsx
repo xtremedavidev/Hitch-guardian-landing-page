@@ -30,11 +30,10 @@ export const Navbar = () => {
     <NavScrollWrapper>
 
       <div className="flex h-full w-full items-center justify-between">
-        <Image
+        <img
           alt="hitch guardian logo"
-          src="/images/logo.svg"
-          width={38}
-          height={38}
+          src="/images/logofull.svg"
+          className="h-5"
         />
 
         <div className="hidden items-center gap-[19px] lg:flex">
