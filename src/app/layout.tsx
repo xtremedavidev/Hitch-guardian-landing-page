@@ -51,10 +51,10 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.className} bg-[#010003] text-white`}>
-        <Navbar />
+      <body className={`${inter.className} `}>
+        {/* <Navbar /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

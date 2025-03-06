@@ -9,10 +9,10 @@ import {
   Pricing,
   RequestDemo,
   StreamlineSteps,
-  WhyChooseUs,
-  
+  WhyChooseUs,  
 } from "@/components";
 import Email from "@/components/Email"
+import NewUi from "@/components/NewUi";
 import { useState } from "react";
 
 
@@ -35,7 +35,8 @@ export default function Home() {
   }
 
   return (
-    <main className="h-full">
+    <>
+    {/* <> <main className="h-full">
 <div className="z-50">
 {emailopen && (<>
       <Email isOpen={emailopen} onClose={onCloseEmail}/>
@@ -57,5 +58,12 @@ export default function Home() {
 </div>
 
       </main>
+    </> */}
+
+    <NewUi />
+
+
+    </>
+   
   );
 }
