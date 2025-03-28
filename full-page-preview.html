@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HitchGuardian | Transforming the way Energy Crews Work</title>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #0066cc;
+            --light-blue: #4d94ff;
+            --accent-blue: #00aaff;
+            --dark-blue: #001a33;
+            --accent-green: #00aa77;
+            --light-green: #4cd9ac;
+            --light-grey: #f5f7fa;
+            --medium-grey: #e1e5eb;
+            --dark-grey: #546a7b;
+            --white: #ffffff;
+            
+            /* Wave opacities and animations */
+            --wave-opacity-1: 0.07;
+            --wave-opacity-2: 0.05;
+            --wave-opacity-3: 0.03;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-grey);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Global wave container for the entire site */
+        .global-wave-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        header {
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 51, 102, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            max-height: 32px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        header .cta-button {
+            margin-left: 1rem;
+        }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 150, 100, 0.75)), url('hero-background.jpg') center/cover no-repeat;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-blue), var(--accent-green));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .problem {
+            background-color: var(--white);
+        }
+
+        .problem-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .challenge-wrapper {
+            max-width: 900px;
+            position: relative;
+        }
+
+        .challenge-box {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 4.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary-blue);
+            transition: all 0.5s ease;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                    rgba(255,255,255,0) 0%, 
+                    rgba(255,255,255,0.8) 50%, 
+                    rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .challenge-box.visible::before {
+            animation: shine 1.8s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .challenge-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-grey);
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .challenge-box.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .challenge-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution {
+            background-color: var(--light-grey);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            margin-bottom: 30px;
+            transform: translateY(40px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    opacity 0.8s ease, 
+                    box-shadow 0.3s ease;
+        }
+
+        .solution-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .solution-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-card .solution-front {
+            display: none;
+        }
+
+        .solution-card .solution-back {
+            position: relative;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-top: 4px solid var(--accent-blue);
+            transform: none;
+            backface-visibility: visible;
+            display: block;
+            height: auto;
+            transition: max-height 1.2s cubic-bezier(0, 1, 0.2, 1), 
+                    padding 0.7s ease, 
+                    opacity 1s ease;
+            max-height: 0;
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+
+        .solution-card.visible .solution-back {
+            max-height: 1000px;
+            padding: 2.5rem;
+            opacity: 1;
+            animation: content-reveal 1s ease-out forwards;
+        }
+
+        @keyframes content-reveal {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .solution-card:nth-child(even) .solution-back {
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .solution-back h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .solution-back h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        .solution-card:nth-child(even) .solution-back h3::after {
+            background: var(--accent-green);
+        }
+
+        .solution-back p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--dark-grey);
+            text-align: center;
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        .solution-image {
+            height: 150px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .solution-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .solution-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .different {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            color: var(--white);
+        }
+
+        .different .section-title h2,
+        .different .section-title p {
+            color: var(--white);
+        }
+
+        .different .section-title:after {
+            background: var(--white);
+        }
+
+        .different-content {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 5rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .different-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, 
+                    rgba(255,255,255,0.2) 0%, 
+                    rgba(255,255,255,0) 70%);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease, transform 1s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .different-content.visible::before {
+            opacity: 1;
+            transform: scale(1.5);
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(1.5); }
+        }
+
+        .different-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 1.8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .different-content.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .different-content.visible p:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .different-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .features {
+            background-color: var(--light-grey);
+            padding: 6rem 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .feature-item {
+            background-color: var(--white);
+            border-radius: 14px;
+            padding: 2.8rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            transform: translateY(40px);
+            opacity: 0;
+            border-top: 5px solid var(--accent-blue);
+            overflow: hidden;
+        }
+
+        .feature-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Add transition delays for staggered animation */
+        .feature-item:nth-child(1) { transition-delay: 0.1s; }
+        .feature-item:nth-child(2) { transition-delay: 0.2s; }
+        .feature-item:nth-child(3) { transition-delay: 0.3s; }
+        .feature-item:nth-child(4) { transition-delay: 0.15s; }
+        .feature-item:nth-child(5) { transition-delay: 0.25s; }
+        .feature-item:nth-child(6) { transition-delay: 0.35s; }
+
+        .feature-item:nth-child(even) {
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                    rgba(46, 204, 113, 0.05) 0%, 
+                    rgba(0, 102, 204, 0.05) 100%);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .feature-item:hover::before {
+            opacity: 1;
+        }
+
+        .feature-item h3 {
+            margin: 1.5rem 0;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .feature-item h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .feature-item:nth-child(even) h3::after {
+            background: var(--accent-green);
+        }
+
+        .feature-item:hover h3::after {
+            width: 70px;
+        }
+
+        .feature-image {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feature-item:hover .feature-image svg {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-content {
+            margin-top: 1.2rem;
+            opacity: 1;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .feature-content p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: var(--dark-grey);
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 7rem 2rem;
+            background-color: var(--light-grey);
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: var(--dark-grey);
+        }
+
+        .cta .cta-button {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+            margin-top: 0.8rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--medium-grey);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--medium-grey);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 1rem 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animation for scrolling */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating animation for CTA */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Wave Animations */
+        @keyframes wave1 {
+            0% { transform: translateX(0) translateZ(0) scaleY(1); }
+            50% { transform: translateX(-25%) translateZ(0) scaleY(0.8); }
+            100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+        }
+
+        @keyframes wave2 {
+            0% { transform: translateX(0) translateZ(0) scaleY(1); }
+            50% { transform: translateX(-30%) translateZ(0) scaleY(0.9); }
+            100% { transform: translateX(-60%) translateZ(0) scaleY(1); }
+        }
+
+        @keyframes wave3 {
+            0% { transform: translateX(0) translateZ(0) scaleY(1); }
+            50% { transform: translateX(-35%) translateZ(0) scaleY(1.1); }
+            100% { transform: translateX(-70%) translateZ(0) scaleY(1); }
+        }
+
+        /* Image Slider Styles */
+        .slider-wrapper {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-slider {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            margin: 30px auto;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+
+        /* Animation for the slider */
+        @keyframes slideIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .slide.active {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        /* Wave effects for the entire site */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            background-position: 0 bottom;
+            transform-origin: center bottom;
+        }
+
+        .wave1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%230066cc' opacity='1'%3E%3C/path%3E%3C/svg%3E");
+            z-index: 1;
+            animation: wave1 18s linear infinite;
+            height: 140%;
+            opacity: 0.15;
+        }
+
+        .wave2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%2300aa77' opacity='1'%3E%3C/path%3E%3C/svg%3E");
+            z-index: 2;
+            animation: wave2 25s linear infinite;
+            height: 120%;
+            opacity: 0.12;
+        }
+
+        .wave3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z' fill='%23003366' opacity='1'%3E%3C/path%3E%3C/svg%3E");
+            z-index: 3;
+            animation: wave3 30s linear infinite;
+            height: 110%;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Global waves that persist throughout the site -->
+    <div class="global-wave-container">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+    
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjUwIDUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxzdHlsZT4KICAgIC5sb2dvLXRleHQgewogICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgICAgIGZvbnQtc2l6ZTogMjBweDsKICAgICAgZmlsbDogIzAwNjZjYzsKICAgIH0KICAgIC5sb2dvLWljb24gewogICAgICBmaWxsOiAjMDA2NmNjOwogICAgfQogIDwvc3R5bGU+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSAxMCkiPgogICAgPHBhdGggY2xhc3M9ImxvZ28taWNvbiIgZD0iTTEwLDAgQzQuNDc3LDAgMCw0LjQ3NyAwLDEwIEMwLDE1LjUyMyA0LjQ3NywyMCAxMCwyMCBDMTUuNTIzLDIwIDIwLDE1LjUyMyAyMCwxMCBDMjAsNC40NzcgMTUuNTIzLDAgMTAsMCBaTTEzLjUsMTUgTDYuNSwxNSBMNi41LDUgTDEzLjUsNSBMMTMuNSwxNSBaIE00LDE1IEwyLjUsMTUgTDIuNSw1IEw0LDUgTDQsMTUgWiBNMTcuNSwxNSBMMTYsMTUgTDE2LDUgTDE3LjUsNSBMMTcuNSwxNSBaIiAvPgogICAgPHRleHQgeD0iMjUiIHk9IjE1LjUiIGNsYXNzPSJsb2dvLXRleHQiPkhpdGNoR3VhcmRpYW48L3RleHQ+CiAgPC9nPgo8L3N2Zz4=" alt="HitchGuardian Logo" id="logo-image">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#problem">Problem</a></li>
+                    <li><a href="#solution">Solution</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#different">Why Us</a></li>
+                    <li><a href="#demo" class="cta-button">Get Demo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Eliminate Manual Scheduling Headaches</h1>
+        <p>HitchGuardian automatically matches the right crew to every task and tracks their journeys in real time—ensuring safety, compliance, and efficiency. Say goodbye to tedious drag-and-drop scheduling and hello to streamlined field operations.</p>
+        <p><strong>Transforming the way Energy Crews Work, One crew at a time</strong></p>
+        <a href="#demo" class="cta-button floating">Book Your Free Demo</a>
+    </section>
+
+    <section id="problem" class="problem">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>The Challenge</h2>
+                <p>Oil & gas companies face significant operational hurdles</p>
+            </div>
+            <div class="problem-content">
+                <div class="challenge-wrapper animate-on-scroll">
+                    <div class="challenge-box">
+                        <p>In the oil & gas world, managing your workforce manually isn't just frustrating—it costs you money and puts contracts at risk. Business owners, operations managers, and dispatchers still wrestle with outdated methods like endless phone calls, spreadsheets, and whiteboards with magnetic name tags. These manual systems lead to miscommunication, scheduling conflicts, and wasted hours, driving up operational costs and jeopardizing your ability to meet safety and compliance standards. When your team is bogged down with administrative headaches, critical shifts can be missed, certifications overlooked, and logistics become a bottleneck—making it harder to win and keep contracts in a competitive market.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="solution">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>The HitchGuardian Solution</h2>
+                <p>Tailored solutions for every level of your organization</p>
+            </div>
+            <!-- Dashboard Screenshot -->
+            <div style="max-width: 1000px; margin: 0 auto 3rem; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.15);" class="animate-on-scroll">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSI1MDAiIHZpZXdCb3g9IjAgMCAxMDAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjVGN0ZBIiAvPgogIDx0ZXh0IHg9IjUwMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM1NDZhN2IiPkhpdGNoR3VhcmRpYW4gRGFzaGJvYXJkPC90ZXh0Pgo8L3N2Zz4=" alt="HitchGuardian Dashboard" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card animate-on-scroll">
+                    <div class="card-inner">
+                        <div class="solution-front">
+                            <div class="solution-header">
+                                <h3>For the Worker</h3>
+                            </div>
+                            <div class="solution-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzU0NmE3YiIgLz4KICA8dGV4dCB4PSIyMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+RmllbGQgV29ya2VyPC90ZXh0Pgo8L3N2Zz4=')"></div>
+                            <div class="solution-body">
+                                <p>Real-time updates and clear instructions</p>
+                            </div>
+                        </div>
+                        <div class="solution-back">
+                            <h3>For the Field Worker</h3>
+                            <p>Real-time job assignments and safety alerts delivered directly to mobile devices. No more waiting for dispatch calls or juggling outdated tools. HitchGuardian ensures oilfield workers always know their exact schedule, location, and task requirements—enhancing productivity and safety compliance.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-card animate-on-scroll">
+                    <div class="card-inner">
+                        <div class="solution-front">
+                            <div class="solution-header">
+                                <h3>For Operations Teams</h3>
+                            </div>
+                            <div class="solution-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzU0NmE3YiIgLz4KICA8dGV4dCB4PSIyMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+T3BlcmF0aW9ucyBUZWFtczwvdGV4dD4KPC9zdmc+')"></div>
+                            <div class="solution-body">
+                                <p>Automated scheduling and tracking</p>
+                            </div>
+                        </div>
+                        <div class="solution-back">
+                            <h3>For Operations Teams</h3>
+                            <p>Eliminate scheduling bottlenecks with automatic crew matching and GPS journey tracking. HitchGuardian's automated dispatch system assigns qualified personnel to tasks based on certifications, proximity, and availability—reducing administrative workload by 70% and ensuring complete shift coverage.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-card animate-on-scroll">
+                    <div class="card-inner">
+                        <div class="solution-front">
+                            <div class="solution-header">
+                                <h3>For the Business Owner</h3>
+                            </div>
+                            <div class="solution-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzU0NmE3YiIgLz4KICA8dGV4dCB4PSIyMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+QnVzaW5lc3MgT3duZXI8L3RleHQ+Cjwvc3ZnPg==')"></div>
+                            <div class="solution-body">
+                                <p>Lower costs and secure contracts</p>
+                            </div>
+                        </div>
+                        <div class="solution-back">
+                            <h3>For the Business Owner</h3>
+                            <p>Maximize ROI and secure contracts with Western Canada's premier oilfield crew management solution. HitchGuardian decreases operational costs while mitigating compliance risks through automated scheduling, real-time KPI dashboards, and comprehensive safety management—giving you the competitive edge.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="different" class="different">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Why HitchGuardian is Different</h2>
+                <p>Built by Alberta-based oil and gas veterans</p>
+            </div>
+            <div class="different-content animate-on-scroll">
+                <p>Built by Alberta-based oil and gas veterans with nearly 20 years of direct field experience, HitchGuardian is the only platform tailored specifically to the complexities of oilfield crew scheduling and journey management. Unlike generic, one-size-fits-all systems, our solution automatically assigns the best-suited workers, keeps every team member informed, and ensures full compliance—all in real time. This specialized, data-driven approach is your ultimate edge in boosting efficiency, reducing costs, and ensuring safety in the high-stakes world of oil and gas operations. Discover the future of workforce logistics with HitchGuardian.</p>
+                
+                <div class="slider-wrapper animate-on-scroll">
+                    <div class="image-slider">
+                        <div class="slider-container">
+                            <div class="slide" data-index="0">
+                                <img src="public/images/IMG_1407.PNG" alt="HitchGuardian Mobile App" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="1">
+                                <img src="public/images/IMG_1408.PNG" alt="HitchGuardian Mobile App" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="2">
+                                <img src="public/images/IMG_1409.PNG" alt="HitchGuardian Mobile App" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="3">
+                                <img src="public/images/IMG_1410.PNG" alt="HitchGuardian Mobile App" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="4">
+                                <img src="public/images/IMG_1411.PNG" alt="HitchGuardian Mobile App" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="5">
+                                <img src="public/images/HG Workers.png" alt="HitchGuardian Workers Interface" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="6">
+                                <img src="public/images/HG JM.png" alt="HitchGuardian Journey Management" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="slide" data-index="7">
+                                <img src="public/images/HG Job creation.png" alt="HitchGuardian Job Creation" style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            
+                            <button class="arrow prev">&lt;</button>
+                            <button class="arrow next">&gt;</button>
+                        </div>
+                        
+                        <div class="dots-container">
+                            <button class="dot" data-index="0"></button>
+                            <button class="dot" data-index="1"></button>
+                            <button class="dot" data-index="2"></button>
+                            <button class="dot" data-index="3"></button>
+                            <button class="dot" data-index="4"></button>
+                            <button class="dot" data-index="5"></button>
+                            <button class="dot" data-index="6"></button>
+                            <button class="dot" data-index="7"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Core Platform Functions & Key Benefits</h2>
+                <p>The ultimate oil & gas crew scheduling and journey management software</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-blue);">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <path d="M8 14h.01"></path>
+                            <path d="M12 14h.01"></path>
+                            <path d="M16 14h.01"></path>
+                            <path d="M8 18h.01"></path>
+                            <path d="M12 18h.01"></path>
+                            <path d="M16 18h.01"></path>
+                        </svg>
+                    </div>
+                    <h3>Automated Crew Scheduling</h3>
+                    <div class="feature-content">
+                        <p>Automatic scheduling engine assigns optimal crews based on proximity, qualifications, and availability. Eliminate manual spreadsheets and whiteboards while reducing scheduling errors by 85%. HitchGuardian ensures every oilfield shift is fully staffed with the right personnel.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-green);">
+                            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Real-Time Journey Management</h3>
+                    <div class="feature-content">
+                        <p>GPS-enabled vehicle tracking with automated route optimization and risk assessment. Reduce fuel costs by 23% while enhancing driver safety through automated check-ins. HitchGuardian's journey management prevents disruptions in high-risk oilfield environments.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-blue);">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            <line x1="9" y1="10" x2="15" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3>Continuous Communication & Instant Updates</h3>
+                    <div class="feature-content">
+                        <p>Seamless communication between field and office with instant notifications and alerts. Ensure critical safety information reaches crews immediately while maintaining documented communication trails. HitchGuardian eliminates costly miscommunications in Western Canadian oilfields.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-green);">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Smart Insights & KPI Tracking</h3>
+                    <div class="feature-content">
+                        <p>Data-driven operations management with customizable KPI dashboards and predictive analytics. Monitor workforce efficiency, compliance metrics, and operational costs in real-time. HitchGuardian transforms oilfield data into actionable business intelligence.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-blue);">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <h3>All-in-One Integrated Platform</h3>
+                    <div class="feature-content">
+                        <p>Unified oil & gas operations platform built by Alberta industry veterans. Replace multiple disjointed systems with one intuitive interface for scheduling, journey tracking, and compliance. HitchGuardian's Western Canada-focused solution delivers rapid implementation and high adoption rates.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-green);">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3>Enhanced Safety & Compliance</h3>
+                    <div class="feature-content">
+                        <p>Automated regulatory compliance with digital safety protocols and qualification tracking. Meet or exceed all CAODC, Enform, and provincial safety standards. HitchGuardian provides auditable compliance records that secure contracts and protect oilfield operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="cta">
+        <div class="container">
+            <h2 class="animate-on-scroll">Unlock Unmatched Efficiency in Oil & Gas</h2>
+            <p class="animate-on-scroll">Experience the only platform built by Alberta oilfield veterans to automate crew management and journey planning for Western Canada. Don't let outdated processes hold you back. Tap into smarter operations—book your free demo now!</p>
+            <a href="#" class="cta-button animate-on-scroll">Get Your Free Demo Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>HitchGuardian</h3>
+                <p>The ultimate oil & gas crew scheduling and journey management software built for Western Canada.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Solutions</h3>
+                <ul>
+                    <li><a href="#">Crew Scheduling</a></li>
+                    <li><a href="#">Journey Management</a></li>
+                    <li><a href="#">Real-Time Communication</a></li>
+                    <li><a href="#">Analytics & Reporting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/company/104143678/admin/dashboard/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 10px 18px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; margin-top: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="margin-right: 10px; fill: currentColor;">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            <span>Follow us on LinkedIn</span>
+                        </a>
+                    </li>
+                    <li><a href="mailto:gethitched@hitchguardian.me"><i class="fas fa-envelope"></i> Email Us</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 HitchGuardian. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--medium-grey);">
+                <span style="display: inline-block; width: 22px; height: 14px; margin-right: 6px; vertical-align: middle; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48bWFzayBpZD0iYSI+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyNTYiIGZpbGw9IiNmZmYiLz48L21hc2s+PGcgbWFzaz0idXJsKCNhKSI+PHBhdGggZmlsbD0iI2YwZjBmMCIgZD0iTTAgMGg1MTJ2NTEySDB6Ii8+PHBhdGggZmlsbD0iI2Q4MDAyNyIgZD0iTTAgMGgxMjh2NTEySDB6bTM4NCAwaDEyOHY1MTJIMzg0ek0xMjggMGgyNTZ2NTEySDF6Ii8+PHBhdGggZmlsbD0iI2Q4MDAyNyIgZD0ibTMwNC40IDI0MS4zLTQ4LjQgMjQuMiAyNC4yLTQ4LjQtMjQuMi00OC40IDQ4LjQgMjQuMiA0OC40LTI0LjItMjQuMiA0OC40IDI0LjIgNDguNHoiLz48L2c+PC9zdmc+')"; background-size: contain; background-repeat: no-repeat;"></span>
+                Calgary, Alberta, Canada
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Animations
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            const solutionCards = document.querySelectorAll('.solution-card');
+            const challengeBox = document.querySelector('.challenge-box');
+            const differentContent = document.querySelector('.different-content');
+            const featureItems = document.querySelectorAll('.feature-item');
+
+            // Add transition delays for carousel effect on solution cards
+            solutionCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.15}s`;
+            });
+
+            // Check if element is in view
+            function checkIfInView() {
+                const windowHeight = window.innerHeight;
+                const windowTopPosition = window.scrollY;
+                const windowBottomPosition = windowTopPosition + windowHeight;
+
+                // Animate elements when scrolled into view
+                animateElements.forEach(function(element) {
+                    const elementHeight = element.offsetHeight;
+                    const elementTopPosition = element.offsetTop;
+                    const elementBottomPosition = elementTopPosition + elementHeight;
+
+                    if (elementBottomPosition >= windowTopPosition && elementTopPosition <= windowBottomPosition) {
+                        element.classList.add('visible');
+                    }
+                });
+
+                // Handle solution card animations
+                solutionCards.forEach(function(card) {
+                    const cardRect = card.getBoundingClientRect();
+                    if (cardRect.top < windowHeight * 0.75) {
+                        card.classList.add('visible');
+                    }
+                });
+
+                // Challenge box animation
+                if (challengeBox) {
+                    const boxRect = challengeBox.getBoundingClientRect();
+                    if (boxRect.top < windowHeight * 0.8) {
+                        challengeBox.classList.add('visible');
+                    }
+                }
+
+                // Different section animation
+                if (differentContent) {
+                    const contentRect = differentContent.getBoundingClientRect();
+                    if (contentRect.top < windowHeight * 0.8) {
+                        differentContent.classList.add('visible');
+                    }
+                }
+
+                // Feature items animation
+                featureItems.forEach(function(item) {
+                    const itemRect = item.getBoundingClientRect();
+                    if (itemRect.top < windowHeight * 0.85) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Image Slider Functionality
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            let currentIndex = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                // Handle wrapping around
+                if (index < 0) {
+                    index = slides.length - 1;
+                } else if (index >= slides.length) {
+                    index = 0;
+                }
+                
+                // Update current index
+                currentIndex = index;
+                
+                // Hide all slides and make dots inactive
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show the current slide and highlight the dot
+                slides[currentIndex].classList.add('active');
+                dots[currentIndex].classList.add('active');
+            }
+            
+            function startSlideshow() {
+                // Clear any existing interval
+                clearInterval(slideInterval);
+                
+                // Set up a new interval
+                slideInterval = setInterval(() => {
+                    showSlide(currentIndex + 1);
+                }, 5000); // Change slide every 5 seconds
+            }
+
+            // Set up slider event listeners
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(currentIndex - 1);
+                    startSlideshow();
+                });
+                
+                nextButton.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(currentIndex + 1);
+                    startSlideshow();
+                });
+                
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        clearInterval(slideInterval);
+                        const index = parseInt(dot.getAttribute('data-index'));
+                        showSlide(index);
+                        startSlideshow();
+                    });
+                });
+
+                // Initialize slider
+                showSlide(0);
+                startSlideshow();
+            }
+
+            // Check if elements are in view on page load
+            checkIfInView();
+            
+            // Check elements on scroll
+            window.addEventListener('scroll', checkIfInView);
+        });
+    </script>
+</body>
+</html>

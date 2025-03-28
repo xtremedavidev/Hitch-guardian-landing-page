@@ -11,6 +11,7 @@ import {
   StreamlineSteps,
   WhyChooseUs,  
 } from "@/components";
+import HitchGuardianLanding from "./page";
 import Email from "@/components/Email"
 import NewUi from "@/components/NewUi";
 import { useState } from "react";
@@ -60,7 +61,7 @@ export default function Home() {
       </main>
     </> */}
 
-    <NewUi />
+    <HitchGuardianLanding />
 
 
     </>
